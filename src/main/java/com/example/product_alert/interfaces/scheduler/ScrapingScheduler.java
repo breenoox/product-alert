@@ -30,9 +30,6 @@ public class ScrapingScheduler {
     @Scheduled(cron = "${scraper.cron}")
     public void executar() {
         log.info("Iniciando scraping da categoria {}", category);
-
-        var produtos = service.scrapeAll(SearchQuery.ofCategory(category, maxPages));
-
-        log.info("Coletados {} produtos", produtos.size());
+        var produtos = service.scrapeAndNotify(SearchQuery.ofCategory(category, maxPages));
     }
 }

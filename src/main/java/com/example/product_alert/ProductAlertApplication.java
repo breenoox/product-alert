@@ -1,14 +1,18 @@
 package com.example.product_alert;
 
+import com.example.product_alert.application.config.ScrapingProperties;
+import com.example.product_alert.infrastructure.notification.telegram.TelegramProperties;
 import com.example.product_alert.interfaces.scheduler.ScrapingScheduler;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
+@EnableConfigurationProperties({TelegramProperties.class, ScrapingProperties.class})
 public class ProductAlertApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ProductAlertApplication.class, args);
