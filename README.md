@@ -1,7 +1,7 @@
 # 🛒 productAlert
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow?style=for-the-badge&logo=github" alt="Em Desenvolvimento">
+  <img src="https://img.shields.io/badge/Status-Concluído-brightgreen?style=for-the-badge&logo=github" alt="Concluído">
 </p>
 
 ---
@@ -29,7 +29,7 @@ infrastructure/scraper/
 ├── mercadolivre/
 │   ├── MercadoLivreParser.java
 │   └── MercadoLivreScraper.java
-└── novaloja/                      ← basta criar esta pasta
+└── novaloja/                  ← basta criar esta pasta
     ├── NovaLojaParser.java
     └── NovaLojaScraper.java
 ```
@@ -48,7 +48,7 @@ Se a nova loja renderizar conteúdo via JavaScript e o Jsoup não der conta, o m
 | ✅ | Deduplicação de produtos por menor preço |
 | ✅ | Tolerância a falhas — uma loja fora do ar não interrompe as demais |
 | ✅ | Execução agendada via cron |
-| 🔜 | **Notificação via bot do Telegram** |
+| ✅ | **Notificação via bot do Telegram** |
 
 ---
 
@@ -77,7 +77,7 @@ O projeto segue **arquitetura hexagonal**, onde todas as dependências apontam p
 ```
 com.example.product_alert
 │
-├── domain/                        ← Núcleo. Zero frameworks.
+├── domain/                    ← Núcleo. Zero frameworks.
 │   ├── model/
 │   │   ├── Product.java           Produto de negócio (não é entidade de banco)
 │   │   ├── Price.java             Value object com validação
@@ -127,6 +127,8 @@ Configuráveis via `application.yml` ou variáveis de ambiente:
 | `scraper.category` | Código da categoria monitorada | `MLB1648` |
 | `scraper.max-pages` | Número máximo de páginas por loja | `2` |
 | `scraper.cron` | Expressão cron da execução (6 campos) | `0 0 3 * * *` |
+| `telegram.bot-token` | Token do seu bot no Telegram | `seu-token-aqui` |
+| `telegram.chat-id` | ID do chat para envio das notificações | `seu-chat-id` |
 
 ---
 
@@ -138,6 +140,13 @@ Clone o repositório:
 ```bash
 git clone https://github.com/breenoox/product-alert.git
 cd product-alert
+```
+
+Para configurar as notificações via Telegram, defina as variáveis de ambiente necessárias:
+
+```bash
+export TELEGRAM_BOT_TOKEN="seu-token-aqui"
+export TELEGRAM_CHAT_ID="seu-chat-id"
 ```
 
 Execute a aplicação:
